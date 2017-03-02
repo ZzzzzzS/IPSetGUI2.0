@@ -1,4 +1,4 @@
-#ifndef HELPWINDOW_H
+﻿#ifndef HELPWINDOW_H
 #define HELPWINDOW_H
 
 #include <QDialog>
@@ -14,6 +14,7 @@ class helpwindow : public QDialog
 public:
     explicit helpwindow(QWidget *parent = 0);
     ~helpwindow();
+private slots:
 
 private:
     Ui::helpwindow *ui;
