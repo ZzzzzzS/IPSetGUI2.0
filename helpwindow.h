@@ -14,8 +14,6 @@ class helpwindow : public QDialog
 public:
     explicit helpwindow(QWidget *parent = 0);
     ~helpwindow();
-private slots:
-
 private:
     Ui::helpwindow *ui;
 };
