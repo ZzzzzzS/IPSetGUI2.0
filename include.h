@@ -14,6 +14,8 @@
 #include <cstdio>
 #include <cstdlib>
 #include <QtDebug>
+#include <QNetworkAddressEntry>
+#include <QHostAddress>
 #include "windows.h"
 
 #include "settingwindow.h"

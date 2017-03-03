@@ -16,6 +16,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     Set_Slots();                                                //设置信号槽
     ui->NetButton->setChecked(true);
+
+
+
 }
 
 MainWindow::~MainWindow()
@@ -45,20 +48,11 @@ void MainWindow::OfficeSlot()
     QSettings *IniRead=new QSettings("config.ini", QSettings::IniFormat);
     if (ui->NetButton->isChecked())
 	{
-        QString ipAddress = "netsh interface ip set address 以太网 static ";
-        ipAddress += IniRead->value("Office/ip").toString();
-        ipAddress+=" ";
-        ipAddress += IniRead->value("Office/subnet_mask").toString();
-        ipAddress+=" ";
-        ipAddress += IniRead->value("Office/Gateway").toString();
+        const QHostAddress addr(IniRead->value("Office/ip").toString());
+        //QNetworkAddressEntry::setIp(&addr);
+        QNetworkAddressEntry Entry;
+        Entry.setIp(addr);
 
-		QByteArray IP = ipAddress.toLatin1();
-        //char* temp = IP.data();
-        //printf("%s",*temp);
-        //system("pause");
-        system(IP.data());
-		system("netsh interface ip set address 以太网 static 172.30.57.47 255.255.255.0 172.30.57.1");
-        qDebug()<<IP.data();
 	}
 
 
