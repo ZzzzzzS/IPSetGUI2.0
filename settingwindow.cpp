@@ -28,6 +28,7 @@ void settingwindow::Set_Slots()
     QObject::connect(ui->cancelbutton,SIGNAL(clicked()),this,SLOT(close()));
     QObject::connect(ui->helpbutton,SIGNAL(clicked()),this,SLOT(HelpSlot()));
     QObject::connect(ui->savebutton,SIGNAL(clicked()),this,SLOT(SaveSlot()));
+    QObject::connect(ui->pushButton,SIGNAL(clicked()),this,SLOT(look_Slot()));
 }
 
 void settingwindow::HelpSlot()
@@ -55,6 +56,23 @@ void settingwindow::SaveSlot()
     setting.setValue("DNS",QVariant(ui->Wdnsline->text()));
     setting.endGroup();
 
+    setting.beginGroup("Drcom");
+    setting.setValue("Drcom",QVariant(ui->DrcomEdit->text()));
+
+    if(ui->DrcomEdit->text().isEmpty())
+    {
+        ui->checkBox->setChecked(false);
+    }
+    if(ui->checkBox->isChecked())
+    {
+        setting.setValue("Lunch","true");
+    }
+    else if(!ui->checkBox->isChecked())
+    {
+        setting.setValue("Lunch","false");
+    }
+    setting.endGroup();
+
     QMessageBox::information(this,"IP Set","Success!",QMessageBox::Close);
     this->close();
 }
@@ -71,4 +89,23 @@ void settingwindow::Set_Value()
     ui->Wmaskline->setText(configIniRead->value("/Domitory/subnet_mask").toString());
     ui->Wgateline->setText(configIniRead->value("/Domitory/Gateway").toString());
     ui->Wdnsline->setText(configIniRead->value("/Domitory/DNS").toString());
+
+    ui->DrcomEdit->setText(configIniRead->value("Drcom/Drcom").toString());
+
+    if(configIniRead->value("Drcom/Lunch").toString()=="true")
+    {
+        ui->checkBox->setChecked(true);
+    }
+    else
+    {
+        ui->checkBox->setChecked(false);
+    }
+}
+
+void settingwindow::look_Slot()
+{
+    QString addr;
+    addr=QFileDialog::getOpenFileName(this, tr("Open File"),QDir::currentPath());
+    ui->DrcomEdit->setText(addr);
+    qDebug()<<addr;
 }

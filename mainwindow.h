@@ -1,4 +1,4 @@
-#ifndef MAINWINDOW_H
+﻿#ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
 #include <QMainWindow>
@@ -25,6 +25,7 @@ private:
     void Set_Slots();
     void Set_RadioButton();
     QButtonGroup *NetWork;
+
 };
 
 #endif // MAINWINDOW_H

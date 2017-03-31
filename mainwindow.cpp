@@ -16,9 +16,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     Set_Slots();                                                //设置信号槽
     ui->NetButton->setChecked(true);
-
-
-
 }
 
 MainWindow::~MainWindow()
@@ -48,24 +45,134 @@ void MainWindow::OfficeSlot()
     QSettings *IniRead=new QSettings("config.ini", QSettings::IniFormat);
     if (ui->NetButton->isChecked())
 	{
-        const QHostAddress addr(IniRead->value("Office/ip").toString());
-        //QNetworkAddressEntry::setIp(&addr);
-        QNetworkAddressEntry Entry;
-        Entry.setIp(addr);
+        QString read;
 
+        read=IniRead->value("Office/ip").toString();
+        std::string str1=read.toStdString();
+        const char *ip=str1.c_str();
+
+        read=IniRead->value("Office/subnet_mask").toString();
+        std::string str2=read.toStdString();
+        const char *subnet_mask=str2.c_str();
+
+        read=IniRead->value("Office/Gateway").toString();
+        std::string str3=read.toStdString();
+        const char *Gateway=str3.c_str();
+
+        char write[100];
+        sprintf(write,"netsh interface ip set address \"以太网\" static %s %s %s",ip,subnet_mask,Gateway);
+        system(write);
+
+        read=IniRead->value("Office/DNS").toString();
+        std::string str4=read.toStdString();
+        const char *DNS=str4.c_str();
+        sprintf(write,"netsh interface ip set dns \"以太网\" static %s",DNS);
+        system(write);
 	}
+    else if(ui->WifiButton->isChecked())
+    {
+        QString read;
 
+        read=IniRead->value("Office/ip").toString();
+        std::string str1=read.toStdString();
+        const char *ip=str1.c_str();
 
+        read=IniRead->value("Office/subnet_mask").toString();
+        std::string str2=read.toStdString();
+        const char *subnet_mask=str2.c_str();
 
+        read=IniRead->value("Office/Gateway").toString();
+        std::string str3=read.toStdString();
+        const char *Gateway=str3.c_str();
 
+        char write[100];
+        sprintf(write,"netsh interface ip set address \"WLAN\" static %s %s %s",ip,subnet_mask,Gateway);
+        system(write);
+
+        read=IniRead->value("Office/DNS").toString();
+        std::string str4=read.toStdString();
+        const char *DNS=str4.c_str();
+        sprintf(write,"netsh interface ip set dns \"WLAN\" static %s",DNS);
+        system(write);
+    }
+
+    if(IniRead->value("Drcom/Lunch").toString()=="true")
+    {
+        QProcess *Lunch=new QProcess;
+        QString test=IniRead->value("Drcom/Drcom").toString();
+        qDebug()<<test;
+        Lunch->start(test);
+        this->close();
+    }
+    delete IniRead;
 }
 
 void MainWindow::DomitorySlot()
 {
+    QSettings *IniRead=new QSettings("config.ini", QSettings::IniFormat);
+    QProcess *Lunch=new QProcess;
     if(ui->NetButton->isChecked())
-        QMessageBox::information(this,tr("test"),"domi Net",QMessageBox::Close);
+    {
+        QString read;
+
+        read=IniRead->value("Domitory/ip").toString();
+        std::string str1=read.toStdString();
+        const char *ip=str1.c_str();
+
+        read=IniRead->value("Domitory/subnet_mask").toString();
+        std::string str2=read.toStdString();
+        const char *subnet_mask=str2.c_str();
+
+        read=IniRead->value("Domitory/Gateway").toString();
+        std::string str3=read.toStdString();
+        const char *Gateway=str3.c_str();
+
+        char write[100];
+        sprintf(write,"netsh interface ip set address \"以太网\" static %s %s %s",ip,subnet_mask,Gateway);
+        system(write);
+
+        read=IniRead->value("Domitory/DNS").toString();
+        std::string str4=read.toStdString();
+        const char *DNS=str4.c_str();
+        sprintf(write,"netsh interface ip set dns \"以太网\" static %s",DNS);
+        system(write);
+
+    }
     else if(ui->WifiButton->isChecked())
-        QMessageBox::information(this,tr("test"),"domi wifi",QMessageBox::Close);
+    {
+        QString read;
+
+        read=IniRead->value("Domitory/ip").toString();
+        std::string str1=read.toStdString();
+        const char *ip=str1.c_str();
+
+        read=IniRead->value("Domitory/subnet_mask").toString();
+        std::string str2=read.toStdString();
+        const char *subnet_mask=str2.c_str();
+
+        read=IniRead->value("Domitory/Gateway").toString();
+        std::string str3=read.toStdString();
+        const char *Gateway=str3.c_str();
+
+        char write[100];
+        sprintf(write,"netsh interface ip set address \"WLAN\" static %s %s %s",ip,subnet_mask,Gateway);
+        system(write);
+
+        read=IniRead->value("Domitory/DNS").toString();
+        std::string str4=read.toStdString();
+        const char *DNS=str4.c_str();
+        sprintf(write,"netsh interface ip set dns \"WLAN\" static %s",DNS);
+        system(write);
+    }
+
+    if(IniRead->value("Drcom/Lunch").toString()=="true")
+    {
+        QString test=IniRead->value("Drcom/Drcom").toString();
+        qDebug()<<test;
+        Lunch->start(test);
+        this->close();
+    }
+    delete IniRead;
 }
 
 void MainWindow::SettingSlot()
@@ -73,5 +180,4 @@ void MainWindow::SettingSlot()
     settingwindow setting;
     setting.show();
     setting.exec();
-    //QMessageBox::information(this,tr("test"),"domi wifi",QMessageBox::Close);
 }

@@ -18,11 +18,13 @@ public:
 private slots:
     void HelpSlot();
     void SaveSlot();
+    void look_Slot();
 
 private:
     Ui::settingwindow *ui;
     void Set_Slots();
     void Set_Value();
+
 };
 
 #endif // SETTINGWINDOW_H

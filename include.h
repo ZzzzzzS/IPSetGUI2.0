@@ -16,6 +16,8 @@
 #include <QtDebug>
 #include <QNetworkAddressEntry>
 #include <QHostAddress>
+#include <QtNetwork>
+#include <QHostInfo>
 #include "windows.h"
 
 #include "settingwindow.h"
