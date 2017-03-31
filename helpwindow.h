@@ -14,8 +14,11 @@ class helpwindow : public QDialog
 public:
     explicit helpwindow(QWidget *parent = 0);
     ~helpwindow();
+private slots:
+    void web_Slot();
 private:
     Ui::helpwindow *ui;
+    QPixmap *pix=new QPixmap;
 };
 
 #endif // HELPWINDOW_H

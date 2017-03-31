@@ -14,6 +14,8 @@ settingwindow::settingwindow(QWidget *parent) :
     this->setMaximumSize(360,180);                              //设置窗口最大最小大小
     this->setMinimumSize(360,180);                              //设置窗口最大最小大小
 
+    ui->tabWidget->setCurrentIndex(0);
+
     Set_Slots();                                                //设置信号槽
     Set_Value();
 }
@@ -105,7 +107,7 @@ void settingwindow::Set_Value()
 void settingwindow::look_Slot()
 {
     QString addr;
-    addr=QFileDialog::getOpenFileName(this, tr("Open File"),QDir::currentPath());
+    addr=QFileDialog::getOpenFileName(this, tr("Open File"),QDir::homePath());
     ui->DrcomEdit->setText(addr);
     qDebug()<<addr;
 }
