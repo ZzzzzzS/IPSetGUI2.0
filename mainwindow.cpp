@@ -98,10 +98,8 @@ void MainWindow::OfficeSlot()
 
     if(IniRead->value("Drcom/Lunch").toString()=="true")
     {
-        QProcess *Lunch=new QProcess;
         QString test=IniRead->value("Drcom/Drcom").toString();
-        qDebug()<<test;
-        Lunch->start(test);
+        QProcess::startDetached(test);
         this->close();
     }
     delete IniRead;
@@ -110,7 +108,6 @@ void MainWindow::OfficeSlot()
 void MainWindow::DomitorySlot()
 {
     QSettings *IniRead=new QSettings("config.ini", QSettings::IniFormat);
-    QProcess *Lunch=new QProcess;
     if(ui->NetButton->isChecked())
     {
         QString read;
@@ -168,8 +165,7 @@ void MainWindow::DomitorySlot()
     if(IniRead->value("Drcom/Lunch").toString()=="true")
     {
         QString test=IniRead->value("Drcom/Drcom").toString();
-        qDebug()<<test;
-        Lunch->start(test);
+        QProcess::startDetached(test);
         this->close();
     }
     delete IniRead;
