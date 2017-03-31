@@ -37,7 +37,7 @@
     <enum>Qt::DefaultContextMenu</enum>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>3</number>
    </property>
    <property name="usesScrollButtons">
     <bool>true</bool>
@@ -242,6 +242,37 @@
        <widget class="QCheckBox" name="checkBox">
         <property name="text">
          <string>修改IP后启动Drcom</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="return_tab">
+    <attribute name="title">
+     <string>还原</string>
+    </attribute>
+    <widget class="QWidget" name="layoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>30</y>
+       <width>221</width>
+       <height>58</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_6">
+      <item>
+       <widget class="QPushButton" name="return_button">
+        <property name="text">
+         <string>还原以太网IP地址</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="return_button_w">
+        <property name="text">
+         <string>还原无线局域网IP地址</string>
         </property>
        </widget>
       </item>

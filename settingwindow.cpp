@@ -31,6 +31,8 @@ void settingwindow::Set_Slots()
     QObject::connect(ui->helpbutton,SIGNAL(clicked()),this,SLOT(HelpSlot()));
     QObject::connect(ui->savebutton,SIGNAL(clicked()),this,SLOT(SaveSlot()));
     QObject::connect(ui->pushButton,SIGNAL(clicked()),this,SLOT(look_Slot()));
+    QObject::connect(ui->return_button,SIGNAL(clicked()),this,SLOT(return_Slot()));
+    QObject::connect(ui->return_button_w,SIGNAL(clicked()),this,SLOT(return_Slot_W()));
 }
 
 void settingwindow::HelpSlot()
@@ -110,4 +112,16 @@ void settingwindow::look_Slot()
     addr=QFileDialog::getOpenFileName(this, tr("Open File"),QDir::homePath());
     ui->DrcomEdit->setText(addr);
     qDebug()<<addr;
+}
+
+void settingwindow::return_Slot()
+{
+    system("netsh interface ip set address \"以太网\" dhcp");
+    QMessageBox::information(this,"IP Set","Success!",QMessageBox::Close);
+}
+
+void settingwindow::return_Slot_W()
+{
+    system("netsh interface ip set address \"WLAN\" dhcp");
+    QMessageBox::information(this,"IP Set","Success!",QMessageBox::Close);
 }

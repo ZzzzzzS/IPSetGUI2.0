@@ -19,7 +19,8 @@ private slots:
     void HelpSlot();
     void SaveSlot();
     void look_Slot();
-
+    void return_Slot();
+    void return_Slot_W();
 private:
     Ui::settingwindow *ui;
     void Set_Slots();
