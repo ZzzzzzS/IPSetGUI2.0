@@ -255,10 +255,10 @@
     <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
-       <x>70</x>
-       <y>30</y>
-       <width>221</width>
-       <height>58</height>
+       <x>50</x>
+       <y>20</y>
+       <width>251</width>
+       <height>87</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -267,12 +267,25 @@
         <property name="text">
          <string>还原以太网IP地址</string>
         </property>
+        <property name="autoDefault">
+         <bool>false</bool>
+        </property>
        </widget>
       </item>
       <item>
        <widget class="QPushButton" name="return_button_w">
         <property name="text">
          <string>还原无线局域网IP地址</string>
+        </property>
+        <property name="autoDefault">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="deletebox">
+        <property name="text">
+         <string>还原后清除已保存的IP地址信息</string>
         </property>
        </widget>
       </item>
@@ -316,6 +329,9 @@
      <widget class="QPushButton" name="savebutton">
       <property name="text">
        <string>保存</string>
+      </property>
+      <property name="default">
+       <bool>true</bool>
       </property>
      </widget>
     </item>

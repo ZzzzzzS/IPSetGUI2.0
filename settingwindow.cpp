@@ -109,19 +109,32 @@ void settingwindow::Set_Value()
 void settingwindow::look_Slot()
 {
     QString addr;
-    addr=QFileDialog::getOpenFileName(this, tr("Open File"),QDir::homePath());
-    ui->DrcomEdit->setText(addr);
-    qDebug()<<addr;
+    addr=QFileDialog::getOpenFileName(this, tr("Open File"),QDir::homePath(),tr("*.exe"));
+    if(!addr.isEmpty())
+    {
+        ui->DrcomEdit->setText(addr);
+        ui->checkBox->setChecked(true);
+    }
 }
 
 void settingwindow::return_Slot()
 {
     system("netsh interface ip set address \"以太网\" dhcp");
+    system("netsh interface ip set dns \"以太网\" dhcp");
+    if(ui->deletebox->isChecked())
+    {
+        QFile::remove("config.ini");
+    }
     QMessageBox::information(this,"IP Set","Success!",QMessageBox::Close);
 }
 
 void settingwindow::return_Slot_W()
 {
     system("netsh interface ip set address \"WLAN\" dhcp");
+    system("netsh interface ip set dns \"WLAN\" dhcp");
+    if(ui->deletebox->isChecked())
+    {
+        QFile::remove("config.ini");
+    }
     QMessageBox::information(this,"IP Set","Success!",QMessageBox::Close);
 }

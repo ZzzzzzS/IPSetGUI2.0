@@ -4,6 +4,7 @@
 #include <QTimer>
 #include <QProcess>
 #include <QTime>
+#include <QFile>
 #include <QApplication>
 #include <QtGui>
 #include <QtWidgets>
