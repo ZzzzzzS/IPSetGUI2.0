@@ -1,6 +1,11 @@
 ﻿#ifndef INCLUDE_H
 #define INCLUDE_H
+<<<<<<< HEAD
 //git检出测试
+=======
+
+//分支测试
+>>>>>>> test
 #include <QTimer>
 #include <QProcess>
 #include <QTime>
