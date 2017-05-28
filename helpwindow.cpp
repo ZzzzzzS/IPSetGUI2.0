@@ -2,6 +2,7 @@
 #include "ui_helpwindow.h"
 #include "include.h"
 
+
 helpwindow::helpwindow(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::helpwindow)
